@@ -2,6 +2,9 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div>
+      <h1 class="watermelon-link">vue cli with tailwind</h1>
+    </div>
   </div>
 </template>
 
