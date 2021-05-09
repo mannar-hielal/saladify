@@ -1,10 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    <div>
-      <h1 class="watermelon-link">vue cli with tailwind</h1>
-    </div>
+    <img alt="saladify logo" src="../assets/images/saladify-logo.jpg" />
+    <HelloWorld msg="Live longer!" />
   </div>
 </template>
 
