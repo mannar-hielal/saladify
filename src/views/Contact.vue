@@ -33,6 +33,11 @@
           </p>
         </div>
 
+        <div>
+          <label for="newsletter">Subscribe to the newsletter</label>
+          <input type="checkbox" id="newsletter" v-model="form.newsletter" />
+        </div>
+
         <!-- email -->
         <div>
           <input
@@ -43,7 +48,7 @@
             @input="$v.form.email.$touch()"
             :class="{
               warning: $v.form.email.$error,
-              success: !$v.form.email.$invalid,
+              success: !$v.form.email.$invalid && $v.form.email.$dirty,
             }"
             placeholder="Your email address"
           />
@@ -101,7 +106,12 @@
 </template>
 
 <script>
-import { required, minLength, email } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  email,
+  requiredIf,
+} from "vuelidate/lib/validators";
 
 export default {
   name: "Contact",
@@ -111,6 +121,7 @@ export default {
         name: null,
         message: null,
         email: null,
+        newsletter: null,
       },
     };
   },
@@ -126,7 +137,9 @@ export default {
       },
       email: {
         email: email,
-        required: required,
+        required: requiredIf(function () {
+          return !!this.form.newsletter;
+        }),
       },
     },
   },
