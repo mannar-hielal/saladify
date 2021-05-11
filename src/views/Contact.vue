@@ -34,10 +34,33 @@
         </div>
 
         <!-- email -->
-        <!-- <div>
-          <label for="email">Email:</label>
-          <input type="email" id="email" v-model="form.email" />
-        </div> -->
+        <div>
+          <input
+            type="email"
+            id="email"
+            aria-label="email"
+            v-model="form.email"
+            @input="$v.form.email.$touch()"
+            :class="{
+              warning: $v.form.email.$error,
+              success: !$v.form.email.$invalid,
+            }"
+            placeholder="Your email address"
+          />
+          <!-- notification -->
+          <p
+            v-if="!$v.form.email.email && $v.form.email.$error"
+            class="text-red-500"
+          >
+            please input a valid email
+          </p>
+          <p
+            v-if="!$v.form.email.required && $v.form.email.$error"
+            class="text-red-500"
+          >
+            email is required
+          </p>
+        </div>
 
         <!-- message -->
         <div>
@@ -78,7 +101,7 @@
 </template>
 
 <script>
-import { required, minLength } from "vuelidate/lib/validators";
+import { required, minLength, email } from "vuelidate/lib/validators";
 
 export default {
   name: "Contact",
@@ -87,6 +110,7 @@ export default {
       form: {
         name: null,
         message: null,
+        email: null,
       },
     };
   },
@@ -99,6 +123,10 @@ export default {
       message: {
         required: required,
         minLength: minLength(10),
+      },
+      email: {
+        email: email,
+        required: required,
       },
     },
   },
