@@ -5,12 +5,17 @@
       <div>
         <!-- name -->
         <div>
-          <label for="name">Name:</label>
           <input
             type="text"
             id="name"
+            aria-label="name"
             v-model="form.name"
             @input="$v.form.name.$touch()"
+            :class="{
+              warning: $v.form.name.$error,
+              success: !$v.form.name.$invalid,
+            }"
+            placeholder="Your name"
           />
           <!-- notification -->
           <p
@@ -36,29 +41,31 @@
 
         <!-- message -->
         <div>
-          <label for="message">Your message:</label>
           <textarea
             name="message"
             form="contactForm"
+            aria-label="message"
             v-model="form.message"
             @input="$v.form.message.$touch()"
-          >
-Enter text here...</textarea
-          >
-
+            placeholder="Enter your message here"
+            :class="{
+              warning: $v.form.message.$error,
+              success: !$v.form.message.$invalid,
+            }"
+          ></textarea>
           <!-- notification -->
           <p
             v-if="!$v.form.message.required && $v.form.message.$error"
             class="text-red-500"
           >
-            Message ist required
+            Message is required
           </p>
 
           <p
             v-if="!$v.form.message.minLength & $v.form.message.$error"
             class="text-red-500"
           >
-            Message must be at least 10 character
+            Yout message must be at least 10 character
           </p>
         </div>
 
@@ -87,7 +94,7 @@ export default {
     form: {
       name: {
         required: required,
-        minLength: minLength(2),
+        minLength: minLength(3),
       },
       message: {
         required: required,
@@ -98,8 +105,21 @@ export default {
   computed: {},
   methods: {
     submitForm() {
-      console.log("form is successfuly submitted!");
+      this.$v.form.$touch();
+      if (!this.$v.form.$invalid) {
+        console.log("form is successfuly submitted!");
+      } else {
+        console.log("invalid form");
+      }
     },
   },
 };
 </script>
+<style lang="postcss">
+.warning {
+  @apply border-2 border-red-500;
+}
+.success {
+  @apply border-2 border-green-500;
+}
+</style>
