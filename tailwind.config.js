@@ -14,6 +14,12 @@ module.exports = {
     extend: {
       colors: {
         watermelon: "#c7d66d",
+        errorBg: "#fff6f6",
+        errorBorder: "#e0b4b4",
+        errorColor: "#9f3a38",
+        successbg: "#f8f8f9",
+        successBorder: "#a9d5de",
+        successColor: "#74C14B",
       },
     },
   },
