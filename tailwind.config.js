@@ -19,7 +19,10 @@ module.exports = {
         errorColor: "#9f3a38",
         successbg: "#f8f8f9",
         successBorder: "#a9d5de",
-        successColor: "#74C14B",
+        successColor: "#74c14b",
+      },
+      fontFamily: {
+        playfairDisplay: "Playfair Display",
       },
     },
   },
