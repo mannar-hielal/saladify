@@ -9,7 +9,7 @@
       </p>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         <contact-form @update="submitForm" class="md:col-span-1"></contact-form>
-        <contact-form @update="submitForm" class="md:col-span-1"></contact-form>
+        <contact-map @update="submitForm" class="md:col-span-1"></contact-map>
       </div>
     </div>
     <div v-else class="text-center form-item">
@@ -27,11 +27,13 @@
 
 <script>
 import ContactForm from "@/components/ContactForm";
+import ContactMap from "@/components/ContactMap";
 
 export default {
   name: "Contact",
   components: {
     ContactForm,
+    ContactMap,
   },
   data() {
     return {
