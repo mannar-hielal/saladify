@@ -1,13 +1,124 @@
+/* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap');
 
-.watermelon-link{
-    @apply text-2xl text-watermelon hover:text-green-600;
+/* layout */
+.default-container {
+  @apply px-4 w-full mx-auto;
+  max-width: 540px;
+
+  @screen md{
+    max-width: 720px;
+    @apply py-24;
+  }
+
+  @screen xl {
+    max-width: 1140px;
+  }
 }
 
-/* input */
-.error {
-  @apply border rounded bg-errorBg border-errorBorder text-errorColor;
+/* cards */
+  .card{
+    @apply border-none rounded bg-white shadow-lg p-6;
+
+    @screen md{
+      @apply p-12;
+    }
+  }
+
+/* typography */
+html {
+  @apply text-lg text-gray-800 bg-graycolor;
+  /* @apply font-realist; */
+
+  * {
+    hyphens: auto;
+    /* overflow-wrap: break-word;
+    word-break: keep-all; */
+  }
+
+  @screen md {
+    @apply text-base;
+  }
 }
-.success {
-  @apply border rounded bg-successbg border-successBorder;
+
+/* header */
+h1,
+.h1{
+  @apply text-5xl font-extrabold text-black font-playfairDisplay;
+}
+
+/* notifications */
+.errorInput {
+  @apply border  border-removecolor bg-errorBg text-removecolor;
+}
+
+.successInput {
+  @apply border  bg-successbg border-brandcolor;
+}
+.errorMsg {
+  @apply text-removecolor;
+}
+
+/* forms */
+form{
+  .form-item{
+    @apply mb-8;
+
+    &:last-child{
+      @apply mb-0;
+    }
+  }
+
+  .label {
+    @apply border border-bordercolor w-full flex justify-start rounded-sm;
+
+    input,
+    textarea {
+      @apply w-full p-3;
+    }
+
+    &:focus .icon-wrapper{
+      @apply bg-brandcolor;
+    }
+  }
+
+.icon-wrapper{
+  @apply bg-navbarcolor relative p-6;
+  height: 3.5rem;
+
+    svg {
+      @apply text-brandcolor absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  input[type="checkbox"]{
+    @apply mr-4;
+  }
+}
+
+/* buttons */
+.btn{
+    @apply border-none text-sm block font-semibold uppercase px-4 py-4 rounded-sm border-2;
+
+    &:hover{
+      @apply  transition-colors duration-100 ease-in;
+    }
+}
+
+.btn--primary{
+  @apply text-white bg-brandcolor;
+  &:hover{
+        @apply bg-white text-brandcolor border-brandcolor border-solid border-2;
+      }
+}
+
+.btn--secondary{
+  @apply bg-white text-brandcolor border-brandcolor border-solid border-2;
+
+  &:hover{
+    @apply text-white bg-brandcolor;
+  }
 }
