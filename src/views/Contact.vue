@@ -7,6 +7,11 @@
         <br />
         aliquam quaerat expedita Odio sed deserunt officia.
       </p>
+      <!-- contact info -->
+      <contact-info
+        class="grid grid-cols-1 gap-8 my-8 md:grid-cols-3"
+      ></contact-info>
+      <!-- form and google map -->
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         <contact-form @update="submitForm" class="md:col-span-1"></contact-form>
         <contact-map @update="submitForm" class="md:col-span-1"></contact-map>
@@ -28,12 +33,14 @@
 <script>
 import ContactForm from "@/components/ContactForm";
 import ContactMap from "@/components/ContactMap";
+import ContactInfo from "../components/ContactInfo.vue";
 
 export default {
   name: "Contact",
   components: {
     ContactForm,
     ContactMap,
+    ContactInfo,
   },
   data() {
     return {

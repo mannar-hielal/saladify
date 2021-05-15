@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <form @submit.prevent="submit" class="card" id="contactForm">
+  <div class="card">
+    <form @submit.prevent="submit" id="contactForm">
       <!-- name -->
       <div class="form-item">
         <label for="name" class="label">
           <div class="icon-wrapper">
-            <font-awesome-icon :icon="['fas', 'user']" />
+            <font-awesome-icon icon="user" />
           </div>
           <input
             type="text"
@@ -39,7 +39,7 @@
       <div class="form-item">
         <label for="email" class="label">
           <div class="icon-wrapper">
-            <font-awesome-icon :icon="['fas', 'envelope']" />
+            <font-awesome-icon icon="envelope" />
           </div>
 
           <input
@@ -70,7 +70,7 @@
       <div class="form-item">
         <label for="message" class="label">
           <div class="icon-wrapper">
-            <font-awesome-icon :icon="['fas', 'pen-nib']" />
+            <font-awesome-icon icon="pen-nib" />
           </div>
           <textarea
             name="message"
@@ -110,7 +110,7 @@
       <!-- submit button -->
       <div class="form-item">
         <button class="w-full btn btn--primary">
-          <font-awesome-icon :icon="['fas', 'paper-plane']" />
+          <font-awesome-icon icon="paper-plane" />
           Send Message
         </button>
       </div>
