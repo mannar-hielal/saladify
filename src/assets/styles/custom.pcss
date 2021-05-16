@@ -42,9 +42,18 @@ html {
 }
 
 /* header */
+h1,.h1,h2,.h2,h3,.h3{
+  @apply text-black font-playfairDisplay;
+}
+
 h1,
 .h1{
-  @apply text-5xl font-extrabold text-black font-playfairDisplay;
+  @apply text-5xl font-extrabold;
+}
+
+h2,
+.h2{
+  @apply text-3xl font-bold;
 }
 
 /* notifications */
@@ -121,4 +130,9 @@ form{
   &:hover{
     @apply text-white bg-brandcolor;
   }
+}
+
+/* links */
+.link {
+  @apply inline-block no-underline;
 }
