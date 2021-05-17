@@ -1,48 +1,38 @@
 <template>
-  <header class="grid w-full md:grid-cols-4 md:grid-rows-2">
-    <div class="col-span-4 logo md:row-span-2 md:col-span-1 md:static">
-      <h1>Saladify</h1>
-      <span>Customize your salad</span>
-    </div>
-    <div class="col-span-4 quickBar md:col-span-3">
-      <div class="contact">
-        <span><a href="mailto:email@email.com">email@email.com</a></span>
-        <span><a href="tel:+49 27 000 00 00">+41 76 000 0000</a> </span>
-      </div>
-      <div class="language">
-        <select name="currency-switcher">
-          <option selected>currency</option>
-          <option value="1">$</option>
-          <option value="2">CHF</option>
-          <option value="3">£</option>
-        </select>
-        <select name="language-switcher">
-          <option selected>language</option>
-          <option value="1">English</option>
-          <option value="2">German</option>
-          <option value="3">French</option>
-        </select>
-      </div>
-    </div>
+  <header>
+    <button class="bars" id="bars">
+      <font-awesome-icon icon="bars" />
+    </button>
+    <h1><router-link class="logo" to="/">Saladify</router-link></h1>
+    <nav class="topnav" id="myTopNav">
+      <router-link class="nav-link" to="/">Home</router-link>
 
-    <div class="col-span-4 nav md:col-span-3">
-      <ul class="navbar-list">
-        <li>
-          <router-link class="link navbar-link" to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link class="link navbar-link" to="/about">About</router-link>
-        </li>
-        <li>
-          <router-link class="link navbar-link" to="/contact"
-            >Contact</router-link
-          >
-        </li>
-      </ul>
-    </div>
+      <router-link class="nav-link" to="/services">Services</router-link>
+      <!-- <div class="dropdown">
+        <button title="open Services">
+          Services
+          <font-awesome-icon icon="caret-down" />
+        </button>
+        <div class="dropdown-content">
+          <a href="#">Link1</a>
+          <a href="#">Link2</a>
+          <a href="#">Link3</a>
+        </div>
+      </div> -->
+      <!-- <a class="nav-link" href="#">About</a> -->
+      <router-link class="nav-link" to="/about">About</router-link>
+
+      <router-link class="nav-link" to="/contact">Contact</router-link>
+
+      <button class="closeBtn" id="closeBtn">
+        <font-awesome-icon icon="times" />
+      </button>
+    </nav>
   </header>
 </template>
 <script>
+import { menu } from "../assets/scripts/menu.js";
+
 export default {
   name: "TheNavigation",
   data() {
@@ -50,85 +40,70 @@ export default {
   },
   props: {},
   computed: {},
-  methods: {},
+  methods: {
+    menu,
+  },
+  mounted() {
+    menu();
+  },
 };
 </script>
 <style lang="postcss">
 header {
   @apply bg-navbarcolor;
 
-  .logo {
-    @apply relative mt-4 text-center;
-    top: 2.5rem;
-
-    @screen md {
-      @apply static ml-auto p-3 text-left mt-0;
-    }
-
-    h1 {
-      @apply text-brandcolor;
-    }
+  /* for the logo & nav to sit next to each others*/
+  @screen md {
+    @apply flex flex-row;
   }
 
-  .quickBar {
-    @apply flex justify-between items-center w-full px-4 py-2 text-white  bg-brandcolor relative;
-    top: -5.8rem;
+  .logo {
+    @apply block text-brandcolor p-4 text-4xl;
 
     @screen md {
-      @apply static;
-    }
-
-    .contact {
-      @apply flex justify-between w-full;
-
-      @screen md {
-        @apply block;
-      }
-    }
-
-    .language {
-      @apply hidden;
-      @screen md {
-        @apply block w-full flex justify-end;
-      }
-
-      select {
-        @apply bg-transparent capitalize cursor-pointer ml-2;
-      }
-    }
-
-    > div > span {
-      @apply pr-0 text-sm;
-
-      @screen md {
-        @apply pr-4 text-base;
-      }
-
-      &:last-child {
-        @apply pr-0;
-      }
+      @apply text-5xl;
     }
   }
 }
-ul.navbar-list {
-  @apply flex items-center justify-center;
+nav.topnav {
+  transition: 0.5s ease-out;
+  @apply bg-navbarcolor overflow-hidden fixed w-full h-0 top-0 left-0;
 
   @screen md {
-    @apply mt-0 justify-start;
+    @apply relative h-auto;
   }
 
-  li {
-    @apply w-full;
-    @screen md {
-      @apply w-auto;
+  /* services | news | contact */
+  /* nav links are block under each other in mobile */
+  a.nav-link {
+    @apply text-headingcolor block p-4 w-full text-center text-3xl transition-colors duration-300;
+
+    &:hover {
+      @apply bg-brandcolor text-white;
     }
-    .navbar-link {
-      @apply px-4 py-3 w-full;
-      @apply uppercase font-bold text-center;
-      &:hover {
-        @apply transition-colors  text-brandcolor duration-100 ease-in bg-brandcolor text-whitecolor;
-      }
+    /* nav links to be horizontal in desktop mode */
+    @screen md {
+      @apply inline-block w-auto float-left text-lg p-8;
     }
   }
+}
+
+/* burger button & close button */
+button.bars,
+button.closeBtn {
+  @apply border-none text-brandcolor text-right cursor-pointer w-full text-4xl absolute top-0 right-0 transition-colors duration-300 p-4;
+}
+
+/* burger & close button in desktop mode */
+button.bars {
+  @apply inline-block;
+
+  @screen md {
+    @apply hidden inset-2/4;
+    transform: translate(-50%, -50%);
+  }
+}
+button.closeBtn {
+  @apply hidden;
 }
 </style>
